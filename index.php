@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="row" id="login-card">
-                                <form class="col s12" action="login.php" method="post">
+                                <form class="col s12" action="" method="post">
                                     <div class="row">
                                         <h5 class="col s12">Sign in</h5>
                                     </div>
@@ -73,6 +73,8 @@
                     </div>
                 </div>
             </div>
+            Welcome <?php echo $_POST["sid"]; ?><br />
+            Your password: <?php echo $_POST["spw"]; ?>
         </div>
     </body>
 </html>
