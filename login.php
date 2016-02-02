@@ -1,26 +1,64 @@
-<html>
-<body>
 <?php
-    $url = "https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin";
-    $info = array('sid' => urlencode($_POST["sid"]), 'PIN' => urlencode($_POST["pin"]));
 
-    foreach($info as $key=>$value) {$info_string .= $key.'='.$value.'&'}
-    rtrim($info_string, '&');
+function login($url,$data){
+    $fp = fopen("cookie.txt", "w");
+    fclose($fp);
+    $login = curl_init();
+    curl_setopt($login, CURLOPT_COOKIEJAR, "cookie.txt");
+    curl_setopt($login, CURLOPT_COOKIEFILE, "cookie.txt");
+    curl_setopt($login, CURLOPT_TIMEOUT, 40000);
+    curl_setopt($login, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($login, CURLOPT_URL, $url);
+    curl_setopt($login, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($login, CURLOPT_FOLLOWLOCATION, TRUE);
+    curl_setopt($login, CURLOPT_POST, TRUE);
+    curl_setopt($login, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($login, CURLOPT_SSL_VERIFYPEER, FALSE);
+    ob_start();
+    return curl_exec ($login);
+    ob_end_clean();
+    curl_close ($login);
+    unset($login);    
+}                  
 
-    $ci = curl_init();
-    curl_setopt($ci, CURLOPT_URL, $url);
-    curl_setopt($ci,CURLOPT_POST, count($info));
-    curl_setopt($ci,CURLOPT_POSTFIELDS, $info_string);
+function grab_page($site){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 40);
+    curl_setopt($ch, CURLOPT_COOKIEFILE, "cookie.txt");
+    curl_setopt($ch, CURLOPT_URL, $site);
+    ob_start();
+    return curl_exec ($ch);
+    ob_end_clean();
+    curl_close ($ch);
+}
 
-    /*curl_setopt($ci, CURLOPT_FAILONERROR, true);
-    curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ci, CURLOPT_AUTOREFERER, true);
-    curl_setopt($ci, CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($ci, CURLOPT_TIMEOUT, 10);*/
+function post_data($site,$data){
+    $datapost = curl_init();
+	$headers = array("Expect:");
+    curl_setopt($datapost, CURLOPT_URL, $site);
+	curl_setopt($datapost, CURLOPT_TIMEOUT, 40000);
+    curl_setopt($datapost, CURLOPT_HEADER, TRUE);
+	curl_setopt($datapost, CURLOPT_HTTPHEADER, $headers); 
+    curl_setopt($datapost, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($datapost, CURLOPT_POST, TRUE);
+    curl_setopt($datapost, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($datapost, CURLOPT_COOKIEFILE, "cookie.txt");
+    ob_start();
+    return curl_exec ($datapost);
+    ob_end_clean();
+    curl_close ($datapost);
+    unset($datapost);    
+}
 
-    $page = curl_exec($ci);
 ?>
 
+<?php
 
-</body>
-</html>
+$login_info = "sid=".$_POST["sid"]."&PIN=".$_POST["pin"];
+
+login("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin", $login_info);
+echo grap_page("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
+
+?>
