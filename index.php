@@ -39,13 +39,15 @@
             </div>
         </div><!--Page header end-->
         
-        <!--Welcome login form-->
+        <!--Welcome login form section-->
         <div class="container">
             <div class="row">
                 <div class="col m6 s12">
+                    <!--Login card start-->
                     <div class="card">
                         <div class="card-content">
                             <div class="row" id="login-card">
+                                <!--Login form start-->
                                 <form class="col s12" action="" method="post">
                                     <div class="row">
                                         <h5 class="col s12">Sign in</h5>
@@ -58,8 +60,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="spw" name="spw" type="password" class="validate">
-                                            <label for="spw">Password</label>
+                                            <input id="pin" name="pin" type="password" class="validate">
+                                            <label for="pin">Password</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -67,14 +69,35 @@
                                             <button type="submit" name="login" value="done" class="waves-effect waves-light btn-large green col s12">login</button>
                                         </div>
                                     </div>
-                                </form>
+                                </form><!--Login form end-->
                             </div>
                         </div>
-                    </div>
+                    </div><!--Login card end-->
                 </div>
             </div>
-            Welcome <?php echo $_POST["sid"]; ?><br />
-            Your password: <?php echo $_POST["spw"]; ?>
+            <?php
+                $url = "https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin";
+                $info = array('sid' => urlencode($_POST["sid"]), 'PIN' => urlencode($_POST["pin"]));
+            
+                foreach($info as $key=>$value) {$info_string .= $key.'='.$value.'&'}
+                rtrim($info_string, '&');
+            
+                $ci = curl_init();
+                curl_setopt($ci, CURLOPT_URL, $url);
+                curl_setopt($ch,CURLOPT_POST, count($info));
+                curl_setopt($ch,CURLOPT_POSTFIELDS, $info_string);
+
+                /*curl_setopt($ci, CURLOPT_FAILONERROR, true);
+                curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ci, CURLOPT_AUTOREFERER, true);
+                curl_setopt($ci, CURLOPT_RETURNTRANSFER,true);
+                curl_setopt($ci, CURLOPT_TIMEOUT, 10);*/
+            
+                $page = curl_exec($ci);
+            
+                if(!$page) { exit(); }
+                echo $page;
+            ?>
         </div>
     </body>
 </html>
