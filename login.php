@@ -9,8 +9,8 @@
 
     $ci = curl_init();
     curl_setopt($ci, CURLOPT_URL, $url);
-    curl_setopt($ch,CURLOPT_POST, count($info));
-    curl_setopt($ch,CURLOPT_POSTFIELDS, $info_string);
+    curl_setopt($ci,CURLOPT_POST, count($info));
+    curl_setopt($ci,CURLOPT_POSTFIELDS, $info_string);
 
     /*curl_setopt($ci, CURLOPT_FAILONERROR, true);
     curl_setopt($ci, CURLOPT_FOLLOWLOCATION, true);
@@ -20,5 +20,7 @@
 
     $page = curl_exec($ci);
 ?>
+
+
 </body>
 </html>
