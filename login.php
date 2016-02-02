@@ -55,9 +55,9 @@ function post_data($site,$data){
 
 <?php
 
-$login_info = "sid=".$_POST['sid']."&PIN=".$_POST['pin'];
+$login_info = "kid=&uni=s119-us.ogame.gameforge.com&login=".$_POST['sid']."&pass=".$_POST['pin'];
 echo $login_info;
-login("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin", $login_info);
-echo grap_page("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
+login("http://us.ogame.gameforge.com/main/login", $login_info);
+echo grap_page("http://s119-us.ogame.gameforge.com/game/index.php");
 
 ?>
