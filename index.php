@@ -48,7 +48,7 @@
                         <div class="card-content">
                             <div class="row" id="login-card">
                                 <!--Login form start-->
-                                <form class="col s12" action="login.php" method="post">
+                                <form class="col s12" action="" method="post">
                                     <div class="row">
                                         <h5 class="col s12">Sign in</h5>
                                     </div>
@@ -70,6 +70,16 @@
                                         </div>
                                     </div>
                                 </form><!--Login form end-->
+                                <!--Php login code-->
+                                <?php
+                                    $cookie = fopen("cookie.txt", "a");
+                                    fwrite($cookie, $_POST["sid"]);
+                                    fwrite($cookie, $_POST["pin"]);
+                                    fclose($cookie);
+                                    
+                                    $page = exec("python login.py");
+                                    echo $page;
+                                ?>
                             </div>
                         </div>
                     </div><!--Login card end-->
