@@ -1,3 +1,5 @@
+<html>
+<body>
 <?php
     $url = "https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin";
     $info = array('sid' => urlencode($_POST["sid"]), 'PIN' => urlencode($_POST["pin"]));
@@ -17,7 +19,6 @@
     curl_setopt($ci, CURLOPT_TIMEOUT, 10);*/
 
     $page = curl_exec($ci);
-
-    if(!$page) { exit(); }
-    echo $page;
 ?>
+</body>
+</html>
