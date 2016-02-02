@@ -55,8 +55,8 @@ function post_data($site,$data){
 
 <?php
 
-$login_info = "sid=".$_POST["sid"]."&PIN=".$_POST["pin"];
-
+$login_info = "sid=".$_POST['sid']."&PIN=".$_POST['pin'];
+echo $login_info;
 login("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_ValLogin", $login_info);
 echo grap_page("https://uos.sharjah.ac.ae:9050/prod_enUS/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu");
 
