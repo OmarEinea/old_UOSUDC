@@ -72,7 +72,7 @@
                                 </form><!--Login form end-->
                                 <!--Php login code-->
                                 <?php
-                                    $cookie = fopen("cookie.txt", "a");
+                                    $cookie = fopen("cookie.txt", "w");
                                     fwrite($cookie, $_POST["sid"]);
                                     fwrite($cookie, $_POST["pin"]);
                                     fclose($cookie);

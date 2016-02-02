@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import urllib2
+import urllib
 
 cookie = open("cookie.txt")
 
-print cookie.read()
+print(cookie)
