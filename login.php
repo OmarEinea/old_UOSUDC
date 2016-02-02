@@ -57,7 +57,7 @@ function post_data($site,$data){
 
 $login_info = "kid=&uni=s119-us.ogame.gameforge.com&login=".$_POST['sid']."&pass=".$_POST['pin'];
 echo $login_info;
-login("http://us.ogame.gameforge.com/main/login", $login_info);
-echo grap_page("http://s119-us.ogame.gameforge.com/game/index.php");
+//login("http://us.ogame.gameforge.com/main/login", $login_info);
+echo grap_page("http://us.ogame.gameforge.com");
 
 ?>
