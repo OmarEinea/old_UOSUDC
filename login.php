@@ -13,7 +13,6 @@ function login($url,$data){
     curl_setopt($login, CURLOPT_FOLLOWLOCATION, TRUE);
     curl_setopt($login, CURLOPT_POST, TRUE);
     curl_setopt($login, CURLOPT_POSTFIELDS, $data);
-	curl_setopt($login, CURLOPT_SSL_VERIFYPEER, FALSE);
     ob_start();
     return curl_exec ($login);
     ob_end_clean();
