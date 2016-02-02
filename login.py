@@ -4,4 +4,4 @@ import urllib
 
 cookie = open("cookie.txt")
 
-print(cookie)
+print(cookie.read())
