@@ -4,4 +4,6 @@ import urllib
 
 cookie = open("cookie.txt")
 
-print(cookie.readlines())
+sid = cookie.readline()
+pin = cookie.readline()
+
