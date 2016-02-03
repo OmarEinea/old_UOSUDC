@@ -73,8 +73,7 @@
                                 <!--Php login code-->
                                 <?php
                                     $cookie = fopen("cookie.txt", "w");
-                                    fwrite($cookie, $_POST["sid"]."\n");
-                                    fwrite($cookie, $_POST["pin"]);
+                                    fwrite($cookie, $_POST["sid"].PHP_EOL.$_POST["pin"]);
                                     fclose($cookie);
                                     
                                     $page = exec("python login.py");
