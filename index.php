@@ -72,12 +72,14 @@
                                 </form><!--Login form end-->
                                 <!--Php login code-->
                                 <?php
-                                    $cookie = fopen("cookie.txt", "w");
-                                    fwrite($cookie, $_POST["sid"].PHP_EOL.$_POST["pin"]);
-                                    fclose($cookie);
-                                    
-                                    $page = exec("python login.py");
-                                    echo $page;
+                                    if(isset($_POST["login"])) {
+                                        $cookie = fopen("cookie.txt", "w");
+                                        fwrite($cookie, $_POST["sid"].PHP_EOL.$_POST["pin"]);
+                                        fclose($cookie);
+
+                                        $page = exec("python login.py");
+                                        echo $page;
+                                    }
                                 ?>
                             </div>
                         </div>
