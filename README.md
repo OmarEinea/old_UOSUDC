@@ -1,17 +1,6 @@
-Website - An easier UDC for UOS students
+An early test script for back-end logic
 ---
 
-
-The website can be accessed through the following URLs:
-> - http://uosudc.tk
-> - https://uosudc.herokuapp.com
-
-
-####Resources
-> - [jQuery](https://github.com/jquery/jquery)
-> - [Materialize](https://github.com/dogfalo/materialize)
-
-
-####License
+Trying out through Python and PHP.
 
 Copyright (C) 2016 by OmarEinea.
